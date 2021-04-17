@@ -1,0 +1,23 @@
+stages:
+  - build
+  - test
+  - publish
+  - deploy
+
+default:
+  image: openjdk:15
+  before_script:
+    - chmod +x ./gradlew
+  cache:
+    key: apus-gradle-cache
+    paths:
+      - .gradle
+
+.prod:
+  only:
+    refs:
+      - main
+
+include:
+  - local: config/ci/client-ci.yml
+  - local: config/ci/server-ci.yml

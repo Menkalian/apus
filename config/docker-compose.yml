@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  apus-server:
+    image: registry.gitlab.com/kiliankra/apus/server:latest
+    ports:
+      - "8080"
+    container_name: apus-server
+    environment:
+      DB_USER: "spring"
+      DB_PASSWORD: "keintest"
+    networks:
+      - apus-net
+  apus-database:
+    image: registry.gitlab.com/kiliankra/apus/database:latest
+    ports:
+      - "3306"
+    container_name: apus-database
+    volumes:
+      # Persistent Data
+      - "/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "changeitfast"
+      MYSQL_PASSWORD: "keintest"
+    networks:
+      - apus-net
+
+networks:
+  apus-net:
+    name: apus-net
