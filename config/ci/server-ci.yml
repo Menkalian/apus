@@ -1,0 +1,5 @@
+# TODO: Server bauen
+# TODO: Tests ausführen
+# TODO: Artefakte zu Artifactory publishen
+# TODO: Publish -> Docker images bauen
+# TODO: Deploy -> Docker-compose updaten (evtl. hauptfile)

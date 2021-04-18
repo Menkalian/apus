@@ -19,5 +19,6 @@ default:
       - main
 
 include:
+  - local: config/ci/database-ci.yml
   - local: config/ci/client-ci.yml
   - local: config/ci/server-ci.yml
