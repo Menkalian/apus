@@ -1,4 +1,56 @@
-# TODO: App bauen
-# TODO: Tests ausführen (s. Emulator-images)
-# TODO: Publish to Artifactory
-# TODO: (Evtl. Deploy-> upload to playstore)
+.android:
+  image: jangrewe/gitlab-ci-android
+
+androidBuild:
+  stage: build
+  script:
+    - ./gradlew client:assemble
+  artifacts:
+    paths:
+      - client/build
+      - client/*/build
+    expire_in: 1 week
+  extends:
+    - .android
+
+androidUnitTest:
+  stage: test
+  script:
+    - echo "Testing stuff"
+    #TODO- ./gradlew client:test
+  #artifacts:
+  #  paths:
+  #    - client/build
+  #    - client/*/build
+  #  expire_in: 1 week
+  extends:
+    - .android
+
+androidInstrumentedTest:
+  stage: test
+  script:
+    - echo "Testing stuff"
+    #TODO- ./gradlew client:test
+  #artifacts:
+  #  paths:
+  #    - client/build
+  #    - client/*/build
+  #  expire_in: 1 week
+  #
+  # Company: android simulator container
+  extends:
+    - .android
+
+androidPublish:
+  stage: publish
+  script:
+    - ./gradlew client:publish
+  extends:
+    - .android
+    - .prod
+  artifacts:
+    paths:
+      - client/*/build/outputs/aar/*.aar
+      - client/*/build/outputs/apk/*.apk
+      - client/*/build/outputs/aab/*.aab
+    expire_in: 1 month

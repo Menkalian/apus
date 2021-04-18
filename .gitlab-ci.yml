@@ -18,6 +18,15 @@ default:
     refs:
       - main
 
+deployServer:
+  image: docker:20
+  before_script:
+    - cd config
+  script:
+    - docker-compose up -d
+  extends:
+    - .prod
+
 include:
   - local: config/ci/database-ci.yml
   - local: config/ci/client-ci.yml

@@ -2,4 +2,43 @@
 # TODO: Tests ausführen
 # TODO: Artefakte zu Artifactory publishen
 # TODO: Publish -> Docker images bauen
-# TODO: Deploy -> Docker-compose updaten (evtl. hauptfile)
+
+serverBuild:
+  stage: build
+  script:
+    - ./gradlew server:bootJar
+  artifacts:
+    paths:
+      - server/build
+    expire_in: 1 week
+
+serverTest:
+  stage: test
+  script:
+    - ./gradlew server:check
+
+serverPublish:
+  stage: publish
+  script:
+    - ./gradlew server:publish
+  extends:
+    - .prod
+  artifacts:
+    paths:
+      - aquila-server/build/libs/*.jar
+    expire_in: 1 month
+
+serverDockerDeploy:
+  stage: application-deploy
+  image: docker:20
+  before_script:
+    - cd server
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD registry.gitlab.com
+    - docker build -t registry.gitlab.com/kiliankra/apus/server:latest .
+    - docker tag registry.gitlab.com/kiliankra/apus/server:latest registry.gitlab.com/kiliankra/apus/server:${CI_COMMIT_SHORT_SHA}
+    - docker push registry.gitlab.com/kiliankra/apus/server:latest
+    - docker push registry.gitlab.com/kiliankra/apus/server:${CI_COMMIT_SHORT_SHA}
+  extends:
+    - .server
+    - .prod
