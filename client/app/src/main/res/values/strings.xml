@@ -1,0 +1,4 @@
+<resources>
+    <string name="mainmenu_options_create">Neue Liste anlegen</string>
+    <string name="mainmenu_options_load">Liste importieren</string>
+</resources>
