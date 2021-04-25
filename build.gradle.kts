@@ -1,6 +1,10 @@
 plugins {
     val ktVersion = "1.5.0-RC"
 
+    // Android
+    id("com.android.application") apply false
+    id("com.android.library") apply false
+
     // Kotlin
     kotlin("jvm") version ktVersion apply false
     kotlin("android") version ktVersion apply false

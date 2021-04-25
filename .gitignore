@@ -12,6 +12,7 @@ build/
 .springBeans
 .sts4-cache
 bin/
+local.properties
 
 ### IntelliJ IDEA ###
 .idea

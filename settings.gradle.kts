@@ -2,6 +2,7 @@ rootProject.name = "apus"
 
 include(":server")
 include(":client")
+include(":client:app")
 
 pluginManagement {
     repositories {

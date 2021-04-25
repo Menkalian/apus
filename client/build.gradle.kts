@@ -6,3 +6,11 @@ plugins {
 
     kotlin("android") apply false
 }
+
+subprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+        google()
+    }
+}
