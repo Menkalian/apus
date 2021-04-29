@@ -1,6 +1,7 @@
 rootProject.name = "apus"
 
 include(":server")
+include(":admin-tool")
 include(":client")
 include(":client:app")
 
