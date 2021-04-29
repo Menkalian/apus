@@ -10,5 +10,6 @@
         <item name="colorSecondaryVariant">@color/light_blue_100_light</item>
         <item name="colorOnSecondary">@color/textColorSecond</item>
         <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/worksans</item>
     </style>
 </resources>

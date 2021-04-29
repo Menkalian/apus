@@ -1,4 +1,6 @@
 <resources>
     <string name="mainmenu_options_create">Neue Liste anlegen</string>
     <string name="mainmenu_options_load">Liste importieren</string>
+    <string name="main_list_welcome">Willkommen bei Apus</string>
+    <string name="main_list_msg">Lege eine neue Liste an oder importiere eine Liste von jemand anderem.</string>
 </resources>

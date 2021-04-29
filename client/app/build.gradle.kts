@@ -36,7 +36,6 @@ android {
     buildTypes {
         getByName("debug") {
             applicationIdSuffix(".debug")
-            resValue("string", "app_name", "Apus DBG")
         }
         getByName("release") {
             isMinifyEnabled = false
@@ -45,7 +44,6 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.findByName("release")!!
-            resValue("string", "app_name", "Apus")
         }
     }
     compileOptions {
